@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let CognitoRegionType = AWSRegionType.USWest2
+        let CognitoIdentityPoolId = ""
+        let DefaultServiceRegionType = AWSRegionType.USWest2
+        
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+                regionType: CognitoRegionType,
+                identityPoolId: CognitoIdentityPoolId)
+        
+        let configuration = AWSServiceConfiguration(
+            region: DefaultServiceRegionType,
+            credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        
         return true
     }
 
