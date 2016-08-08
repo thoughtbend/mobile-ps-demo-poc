@@ -14,9 +14,11 @@
 		24E084961D561596005E9476 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E084941D561596005E9476 /* Main.storyboard */; };
 		24E084981D561596005E9476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24E084971D561596005E9476 /* Assets.xcassets */; };
 		24E0849B1D561596005E9476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E084991D561596005E9476 /* LaunchScreen.storyboard */; };
+		2BCF477CCFCD8F4793270E0E /* Pods_AboutTown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6319E4717A0353DABBB94450 /* Pods_AboutTown.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		084AB16DB40A924478A6DD2F /* Pods-AboutTown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AboutTown.release.xcconfig"; path = "Pods/Target Support Files/Pods-AboutTown/Pods-AboutTown.release.xcconfig"; sourceTree = "<group>"; };
 		244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		24E0848B1D561596005E9476 /* AboutTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AboutTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E0848E1D561596005E9476 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		24E084971D561596005E9476 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24E0849A1D561596005E9476 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24E0849C1D561596005E9476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6319E4717A0353DABBB94450 /* Pods_AboutTown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AboutTown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9B21B3D49460C1848DC946C /* Pods-AboutTown.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AboutTown.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AboutTown/Pods-AboutTown.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BCF477CCFCD8F4793270E0E /* Pods_AboutTown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19E9D4A44FE0AC7D7B7DE0ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6319E4717A0353DABBB94450 /* Pods_AboutTown.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		24E084821D561596005E9476 = {
 			isa = PBXGroup;
 			children = (
 				24E0848D1D561596005E9476 /* AboutTown */,
 				24E0848C1D561596005E9476 /* Products */,
+				DCBF9339EE841E65ED350C3F /* Pods */,
+				19E9D4A44FE0AC7D7B7DE0ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +85,15 @@
 			path = AboutTown;
 			sourceTree = "<group>";
 		};
+		DCBF9339EE841E65ED350C3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D9B21B3D49460C1848DC946C /* Pods-AboutTown.debug.xcconfig */,
+				084AB16DB40A924478A6DD2F /* Pods-AboutTown.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24E0849F1D561596005E9476 /* Build configuration list for PBXNativeTarget "AboutTown" */;
 			buildPhases = (
+				1E8B91DD18ADC62AA204C2FE /* [CP] Check Pods Manifest.lock */,
 				24E084871D561596005E9476 /* Sources */,
 				24E084881D561596005E9476 /* Frameworks */,
 				24E084891D561596005E9476 /* Resources */,
+				7C5E0DF84495D17CB2670384 /* [CP] Embed Pods Frameworks */,
+				7F5E44846220AD7770AD9D1E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E8B91DD18ADC62AA204C2FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7C5E0DF84495D17CB2670384 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AboutTown/Pods-AboutTown-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F5E44846220AD7770AD9D1E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AboutTown/Pods-AboutTown-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		24E084871D561596005E9476 /* Sources */ = {
@@ -255,6 +330,7 @@
 		};
 		24E084A01D561596005E9476 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9B21B3D49460C1848DC946C /* Pods-AboutTown.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AboutTown/Info.plist;
@@ -266,6 +342,7 @@
 		};
 		24E084A11D561596005E9476 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 084AB16DB40A924478A6DD2F /* Pods-AboutTown.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AboutTown/Info.plist;
