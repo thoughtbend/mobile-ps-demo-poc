@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let CognitoRegionType = AWSRegionType.USWest2
-        let CognitoIdentityPoolId = ""
+        let CognitoIdentityPoolId = "us-west-2:54b12e61-7346-42d5-947d-7f32384740b5"
         let DefaultServiceRegionType = AWSRegionType.USWest2
         
         let credentialsProvider = AWSCognitoCredentialsProvider(
@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             credentialsProvider: credentialsProvider)
         
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        
+        AWSLogger.defaultLogger().logLevel = AWSLogLevel.Verbose
         
         return true
     }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244E86E41D561D3C008BBF46 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */; };
+		2464FA621D5C28AD00C8A75B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464FA611D5C28AD00C8A75B /* LoginController.swift */; };
 		24E0848F1D561596005E9476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0848E1D561596005E9476 /* AppDelegate.swift */; };
 		24E084911D561596005E9476 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E084901D561596005E9476 /* FirstViewController.swift */; };
 		24E084931D561596005E9476 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E084921D561596005E9476 /* SecondViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		084AB16DB40A924478A6DD2F /* Pods-AboutTown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AboutTown.release.xcconfig"; path = "Pods/Target Support Files/Pods-AboutTown/Pods-AboutTown.release.xcconfig"; sourceTree = "<group>"; };
 		244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		2464FA611D5C28AD00C8A75B /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		24E0848B1D561596005E9476 /* AboutTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AboutTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E0848E1D561596005E9476 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24E084901D561596005E9476 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				24E084991D561596005E9476 /* LaunchScreen.storyboard */,
 				24E0849C1D561596005E9476 /* Info.plist */,
 				244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */,
+				2464FA611D5C28AD00C8A75B /* LoginController.swift */,
 			);
 			path = AboutTown;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				24E0848F1D561596005E9476 /* AppDelegate.swift in Sources */,
 				244E86E41D561D3C008BBF46 /* RegistrationViewController.swift in Sources */,
 				24E084911D561596005E9476 /* FirstViewController.swift in Sources */,
+				2464FA621D5C28AD00C8A75B /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
