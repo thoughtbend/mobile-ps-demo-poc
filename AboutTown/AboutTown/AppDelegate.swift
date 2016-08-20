@@ -8,34 +8,59 @@
 
 import UIKit
 import AWSCore
+import AWSCognito
+import AWSCognitoIdentityProvider
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        AWSLogger.defaultLogger().logLevel = AWSLogLevel.Verbose
         
         let CognitoRegionType = AWSRegionType.USWest2
-        let CognitoIdentityPoolId = "us-west-2:54b12e61-7346-42d5-947d-7f32384740b5"
+        let CognitoIdentityPoolId = Constants.CognitoIdentityPoolId
         let DefaultServiceRegionType = AWSRegionType.USWest2
-        
-        let credentialsProvider = AWSCognitoCredentialsProvider(
-                regionType: CognitoRegionType,
-                identityPoolId: CognitoIdentityPoolId)
         
         let configuration = AWSServiceConfiguration(
             region: DefaultServiceRegionType,
-            credentialsProvider: credentialsProvider)
+            credentialsProvider: nil)
         
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
         
-        AWSLogger.defaultLogger().logLevel = AWSLogLevel.Verbose
+        let serviceConfiguration = AWSServiceManager.defaultServiceManager().defaultServiceConfiguration
+        
+        let userPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: Constants.ClientIdAuth, clientSecret: Constants.ClientSecretAuth, poolId: Constants.PoolId)
+        
+        let poolKey = Constants.UserPoolName
+        AWSCognitoIdentityUserPool.registerCognitoIdentityUserPoolWithConfiguration(serviceConfiguration, userPoolConfiguration: userPoolConfiguration, forKey: poolKey)
+        let pool = AWSCognitoIdentityUserPool(forKey: poolKey)
+        
+        pool.delegate = self
+        
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+            regionType: CognitoRegionType,
+            identityPoolId: CognitoIdentityPoolId,
+            identityProviderManager: pool)
+        
+        print("\(credentialsProvider.identityId)")
         
         return true
     }
+    
+    func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
+        
+        let loginController = self.window?.rootViewController?.storyboard!.instantiateViewControllerWithIdentifier("loginController")
+        self.window?.rootViewController?.presentViewController(loginController!, animated: true, completion: nil)
+        
+        //return loginController;
+        return loginController as! AWSCognitoIdentityPasswordAuthentication
+    }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -57,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
     }
 
 

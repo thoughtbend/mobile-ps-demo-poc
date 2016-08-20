@@ -36,39 +36,22 @@ class RegistrationViewController: UIViewController {
         print("Did passwords match? \(passwordsMatch)")
         
         if (!passwordsMatch) {
-            /*let alert = UIAlertView()
-            alert.title = "No Text"
-            alert.message = "Passwords do not match"
-            alert.addButtonWithTitle("Ok")
-            alert.show()*/
+            
             showInfoAlert("Passwords do not match", title: "No Text")
          }
         else {
             proceed = true
         }
         
-        //var cognito = AWSCognito.defaultCognito()
-        //var cognitoService =
-        
-        /*let userPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: "1kmr1leb1kudn2pd7i72p42if3", clientSecret: "1vdbdo8e5qi326773c7etlepht2mqk0qoi1um1plfio25e9e3gbn", poolId: "us-west-2_0Au6MRa5r")*/
-        
         let cognitoIP = AWSCognitoIdentityProvider.defaultCognitoIdentityProvider()
-        
-        
         let signupRequest = AWSCognitoIdentityProviderSignUpRequest()
-        /* App 1 credentials
-        signupRequest.clientId = "1kmr1leb1kudn2pd7i72p42if3"
-        signupRequest.secretHash = "1vdbdo8e5qi326773c7etlepht2mqk0qoi1um1plfio25e9e3gbn"*/
         
-        /* App 2 credentials */
-        signupRequest.clientId = "4cdtlhgk5gp43idr1uen7rc5pf"
+        /* App credentials */
+        signupRequest.clientId = Constants.ClientIdRegistration
         
         signupRequest.username = emailValue
         signupRequest.password = passwordValue
         
-        /*let emailAttr = AWSCognitoIdentityProviderAttributeType()
-        emailAttr.name = "email"
-        emailAttr.value = emailValue*/
         let emailUserAttr = AWSCognitoIdentityUserAttributeType();
         emailUserAttr.name = "email"
         emailUserAttr.value = emailValue;
@@ -83,6 +66,7 @@ class RegistrationViewController: UIViewController {
         
         signupResponse.waitUntilFinished()
         
+        // QUESTION - Do we need this check after doing the waitUntilFinsihed() call?
         if (signupResponse.completed) {
             
             let error = signupResponse.error
@@ -119,11 +103,13 @@ class RegistrationViewController: UIViewController {
     }
     
     private func showInfoAlert(message: String, title: String!) {
-        let alert = UIAlertView()
-        alert.title = title
-        alert.message = message
-        alert.addButtonWithTitle("Ok")
-        alert.show()
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     // Common Functions
