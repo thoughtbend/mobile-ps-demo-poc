@@ -40,6 +40,20 @@ class FirstViewController: UIViewController {
         if (!user.signedIn) {
             user.getSession()
         }
+        else {
+            
+            let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+            print("\(settings?.categories?.count)")
+            
+            let notification = UILocalNotification()
+            notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+            notification.alertBody = "Hey you! Yeah you! Swipe to unlock!"
+            notification.alertAction = "be awesome!"
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.userInfo = ["CustomField1": "w00t"]
+            
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
     }
 
     override func didReceiveMemoryWarning() {
