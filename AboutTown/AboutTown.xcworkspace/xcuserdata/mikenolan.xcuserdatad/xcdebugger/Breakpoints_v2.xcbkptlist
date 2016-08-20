@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AboutTown/AppDelegate.swift"
-            timestampString = "493391046.304891"
+            timestampString = "493402288.463847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "startPasswordAuthentication()"
             landmarkType = "5">
          </BreakpointContent>
