@@ -9,6 +9,7 @@
 import UIKit
 import AWSCognito
 import AWSCognitoIdentityProvider
+import AWSMobileAnalytics
 
 class FirstViewController: UIViewController {
 
@@ -21,7 +22,7 @@ class FirstViewController: UIViewController {
         user.signOutAndClearLastKnownUser()
         
         // Doing this to force the UI to redisplay the login screen
-        user.getDetails()
+        user.getSession()
         print("signout should have completed")
     }
     
@@ -40,11 +41,17 @@ class FirstViewController: UIViewController {
         if (!user.signedIn) {
             user.getSession()
         }
+        
+        //let eventClient = AWSMobileAnalytics.defaultMobileAnalytics().eventClient
+        let eventClient = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId).eventClient
+        let formViewEvent = eventClient.createEventWithEventType("formViewEvent")
+        formViewEvent.addAttribute("pageName", forKey: "First View")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
 
 

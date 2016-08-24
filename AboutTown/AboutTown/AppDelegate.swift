@@ -10,6 +10,7 @@ import UIKit
 import AWSCore
 import AWSCognito
 import AWSCognitoIdentityProvider
+import AWSMobileAnalytics
 
 
 @UIApplicationMain
@@ -22,32 +23,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         // Override point for customization after application launch.
         AWSLogger.defaultLogger().logLevel = AWSLogLevel.Verbose
         
-        let CognitoRegionType = AWSRegionType.USWest2
+        let CognitoRegionType = AWSRegionType.USEast1
         let CognitoIdentityPoolId = Constants.CognitoIdentityPoolId
-        let DefaultServiceRegionType = AWSRegionType.USWest2
+        let DefaultServiceRegionType = AWSRegionType.USEast1
         
-        let configuration = AWSServiceConfiguration(
+        let serviceConfiguration = AWSServiceConfiguration(
             region: DefaultServiceRegionType,
             credentialsProvider: nil)
         
-        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
-        
-        let serviceConfiguration = AWSServiceManager.defaultServiceManager().defaultServiceConfiguration
+        // Needed to support account registration
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = serviceConfiguration
         
         let userPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: Constants.ClientIdAuth, clientSecret: Constants.ClientSecretAuth, poolId: Constants.PoolId)
         
         let poolKey = Constants.UserPoolName
-        AWSCognitoIdentityUserPool.registerCognitoIdentityUserPoolWithConfiguration(serviceConfiguration, userPoolConfiguration: userPoolConfiguration, forKey: poolKey)
-        let pool = AWSCognitoIdentityUserPool(forKey: poolKey)
         
+        AWSCognitoIdentityUserPool.registerCognitoIdentityUserPoolWithConfiguration(serviceConfiguration, userPoolConfiguration: userPoolConfiguration, forKey: poolKey)
+        
+        let pool = AWSCognitoIdentityUserPool(forKey: poolKey)
         pool.delegate = self
         
-        let credentialsProvider = AWSCognitoCredentialsProvider(
-            regionType: CognitoRegionType,
-            identityPoolId: CognitoIdentityPoolId,
-            identityProviderManager: pool)
         
-        print("\(credentialsProvider.identityId)")
+        
+        /*let analyticsConfig = AWSMobileAnalyticsConfiguration()
+        analyticsConfig.serviceConfiguration = AWSServiceConfiguration(region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+        
+        let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, configuration: analyticsConfig, completionBlock: nil)*/
+        let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId)
         
         return true
     }
