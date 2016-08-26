@@ -18,12 +18,18 @@ class FirstViewController: UIViewController {
         let pool = AWSCognitoIdentityUserPool(forKey: Constants.UserPoolName)
         
         // TODO - this can't be hard-coded
-        let user = pool.getUser(UserRecord.lastKnownUser)
-        user.signOutAndClearLastKnownUser()
+        let userSessionManager = UserSessionManager.getInstance()
+        let lastKnownLogin = userSessionManager.getLastKnownLogin()
+        if lastKnownLogin != nil {
+            let user = pool.getUser(lastKnownLogin!)
+            user.signOutAndClearLastKnownUser()
+            userSessionManager.clearLastKnownLogin()
+            userSessionManager.store()
         
-        // Doing this to force the UI to redisplay the login screen
-        user.getSession()
-        print("signout should have completed")
+            // Doing this to force the UI to redisplay the login screen
+            user.getSession()
+            print("signout should have completed")
+        }
     }
     
     override func viewDidLoad() {
@@ -34,9 +40,11 @@ class FirstViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         let pool = AWSCognitoIdentityUserPool(forKey: Constants.UserPoolName)
+        let userSessionManager = UserSessionManager.getInstance()
+        let lastKnownUser = userSessionManager.getLastKnownLogin()
         
         // TODO - this can'be hard-coded
-        let user = pool.getUser(UserRecord.lastKnownUser)
+        let user = (lastKnownUser != nil) ? pool.getUser(lastKnownUser!) : pool.getUser()
         
         if (!user.signedIn) {
             user.getSession()
