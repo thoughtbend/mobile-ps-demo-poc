@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import AWSMobileAnalytics
 
 class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let eventClient = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId).eventClient
+        let formViewEvent = eventClient.createEventWithEventType("formViewEvent")
+        formViewEvent.addAttribute("pageName", forKey: "Second View")
     }
 
     override func didReceiveMemoryWarning() {

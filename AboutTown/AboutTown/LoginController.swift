@@ -9,6 +9,7 @@
 import UIKit
 import AWSCognito
 import AWSCognitoIdentityProvider
+import AWSMobileAnalytics
 
 class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthentication {
     
@@ -24,6 +25,11 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
         let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: emailValue, password: self.passwordField.text!)
         
         self.passwordAuthenticationCompletionSource.setResult(authDetails)
+        
+        /*let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId)
+        let eventClient = analytics.eventClient
+        let event = eventClient.createEventWithEventType("explicitLogin")
+        eventClient.recordEvent(event)*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,7 +70,7 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
                 self.dismissViewControllerAnimated(true, completion: {
                     
                     let mainTabNavView = self.storyboard?.instantiateViewControllerWithIdentifier("mainTabNav")
-                    self.presentViewController(mainTabNavView!, animated: true, completion: nil)
+                    self.showViewController(mainTabNavView!, sender: self)
                 })
             }
         }
