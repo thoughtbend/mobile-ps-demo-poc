@@ -23,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         // Override point for customization after application launch.
         AWSLogger.defaultLogger().logLevel = AWSLogLevel.Verbose
         
-        let CognitoRegionType = AWSRegionType.USEast1
-        let CognitoIdentityPoolId = Constants.CognitoIdentityPoolId
         let DefaultServiceRegionType = AWSRegionType.USEast1
         
         let serviceConfiguration = AWSServiceConfiguration(
@@ -43,12 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         let pool = AWSCognitoIdentityUserPool(forKey: poolKey)
         pool.delegate = self
         
-        
-        
-        /*let analyticsConfig = AWSMobileAnalyticsConfiguration()
-        analyticsConfig.serviceConfiguration = AWSServiceConfiguration(region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
-        
-        let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, configuration: analyticsConfig, completionBlock: nil)*/
         let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId)
         
         return true
@@ -57,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
     func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
         
         let loginController = self.window?.rootViewController?.storyboard!.instantiateViewControllerWithIdentifier("loginController")
-        self.window?.rootViewController?.presentViewController(loginController!, animated: true, completion: nil)
+        self.window?.rootViewController?.showViewController(loginController!, sender: self)
         
         //return loginController;
         return loginController as! AWSCognitoIdentityPasswordAuthentication

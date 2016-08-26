@@ -41,6 +41,15 @@ class FirstViewController: UIViewController {
         if (!user.signedIn) {
             user.getSession()
         }
+        else {
+            print("username is \(user.username)")
+            let userDetailsTask = user.getDetails()
+            userDetailsTask.waitUntilFinished()
+            let userDetails = userDetailsTask.result as! AWSCognitoIdentityUserGetDetailsResponse;
+            print("user details \(userDetails)")
+            let email = userDetails.userAttributes![2]
+            print("email is \(email.value)")
+        }
         
         //let eventClient = AWSMobileAnalytics.defaultMobileAnalytics().eventClient
         let eventClient = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId).eventClient

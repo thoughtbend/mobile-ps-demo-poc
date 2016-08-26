@@ -70,7 +70,7 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
                 self.dismissViewControllerAnimated(true, completion: {
                     
                     let mainTabNavView = self.storyboard?.instantiateViewControllerWithIdentifier("mainTabNav")
-                    self.presentViewController(mainTabNavView!, animated: true, completion: nil)
+                    self.showViewController(mainTabNavView!, sender: self)
                 })
             }
         }
