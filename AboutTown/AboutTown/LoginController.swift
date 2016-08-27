@@ -59,6 +59,12 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
     }
      
     func didCompletePasswordAuthenticationStepWithError(error: NSError?) {
+        
+        if error == nil {
+            let userSessionManager = UserSessionManager.getInstance()
+            userSessionManager.setLastKnownLogin(self.emailField.text!)
+            userSessionManager.store()
+        }
     
         dispatch_async(dispatch_get_main_queue()) {
             if (error != nil) {
@@ -69,8 +75,8 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
                 self.loginSuccess = true
                 self.dismissViewControllerAnimated(true, completion: {
                     
-                    let mainTabNavView = self.storyboard?.instantiateViewControllerWithIdentifier("mainTabNav")
-                    self.showViewController(mainTabNavView!, sender: self)
+                    /*let mainTabNavView = self.storyboard?.instantiateViewControllerWithIdentifier("mainTabNav")
+                    self.showViewController(mainTabNavView!, sender: self)*/
                 })
             }
         }

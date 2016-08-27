@@ -43,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         
         let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId)
         
+        UserSessionManager.getInstance().load()
+        
         return true
     }
     

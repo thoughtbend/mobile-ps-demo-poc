@@ -23,8 +23,3 @@ struct Constants {
     
     static let AnalyticsAppId = "9f6b01da69e0401da0b578f3737a43ea"
 }
-
-struct UserRecord {
-    
-    static let lastKnownUser = "mnolanjr@gmail.com"
-}

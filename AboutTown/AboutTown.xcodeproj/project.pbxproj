@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24147E8B1D70C5B100126A04 /* UserSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24147E8A1D70C5B100126A04 /* UserSessionManager.swift */; };
 		24186AF71D66ABE2007CC878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24186AF61D66ABE2007CC878 /* Constants.swift */; };
 		244E86E41D561D3C008BBF46 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */; };
 		2464FA621D5C28AD00C8A75B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464FA611D5C28AD00C8A75B /* LoginController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		084AB16DB40A924478A6DD2F /* Pods-AboutTown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AboutTown.release.xcconfig"; path = "Pods/Target Support Files/Pods-AboutTown/Pods-AboutTown.release.xcconfig"; sourceTree = "<group>"; };
+		24147E8A1D70C5B100126A04 /* UserSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSessionManager.swift; sourceTree = "<group>"; };
 		24186AF61D66ABE2007CC878 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		2464FA611D5C28AD00C8A75B /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				244E86E31D561D3C008BBF46 /* RegistrationViewController.swift */,
 				2464FA611D5C28AD00C8A75B /* LoginController.swift */,
 				24186AF61D66ABE2007CC878 /* Constants.swift */,
+				24147E8A1D70C5B100126A04 /* UserSessionManager.swift */,
 			);
 			path = AboutTown;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				24E084911D561596005E9476 /* FirstViewController.swift in Sources */,
 				2464FA621D5C28AD00C8A75B /* LoginController.swift in Sources */,
 				24186AF71D66ABE2007CC878 /* Constants.swift in Sources */,
+				24147E8B1D70C5B100126A04 /* UserSessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
