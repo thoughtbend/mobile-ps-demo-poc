@@ -18,8 +18,10 @@ class SecondViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         let eventClient = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId).eventClient
+        
         let formViewEvent = eventClient.createEventWithEventType("formViewEvent")
         formViewEvent.addAttribute("pageName", forKey: "Second View")
+        eventClient.recordEvent(formViewEvent)
     }
 
     override func didReceiveMemoryWarning() {

@@ -63,6 +63,7 @@ class FirstViewController: UIViewController {
         let eventClient = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId).eventClient
         let formViewEvent = eventClient.createEventWithEventType("formViewEvent")
         formViewEvent.addAttribute("pageName", forKey: "First View")
+        eventClient.recordEvent(formViewEvent)
     }
 
     override func didReceiveMemoryWarning() {
