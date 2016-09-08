@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import AWSCognitoIdentityProvider
 
 class UserSessionManager {
     
     static let singletonInstance = UserSessionManager()
     
     var userData: UserData? = nil
+    var userPool = AWSCognitoIdentityUserPool(forKey: Constants.UserPoolName)
+    var credentialsProvider: AWSCognitoCredentialsProvider? = nil
     
     private init() {
         
@@ -21,6 +24,17 @@ class UserSessionManager {
     static func getInstance() -> UserSessionManager {
     
         return singletonInstance
+    }
+    
+    static func getUserPool() -> AWSCognitoIdentityUserPool {
+        return UserSessionManager.getInstance().userPool
+    }
+    
+    static func getCredentialsProvider() -> AWSCognitoCredentialsProvider {
+
+        return (singletonInstance.credentialsProvider == nil) ?
+            AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: Constants.CognitoIdentityPoolId/*, identityProviderManager: singletonInstance.userPool*/) :
+            singletonInstance.credentialsProvider!
     }
     
     func getLastKnownLogin() -> String? {

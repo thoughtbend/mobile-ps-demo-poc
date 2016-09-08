@@ -15,21 +15,7 @@ class FirstViewController: UIViewController {
 
     @IBAction func handleLogout(sender: UIButton) {
     
-        let pool = AWSCognitoIdentityUserPool(forKey: Constants.UserPoolName)
         
-        // TODO - this can't be hard-coded
-        let userSessionManager = UserSessionManager.getInstance()
-        let lastKnownLogin = userSessionManager.getLastKnownLogin()
-        if lastKnownLogin != nil {
-            let user = pool.getUser(lastKnownLogin!)
-            user.signOutAndClearLastKnownUser()
-            userSessionManager.clearLastKnownLogin()
-            userSessionManager.store()
-        
-            // Doing this to force the UI to redisplay the login screen
-            user.getSession()
-            print("signout should have completed")
-        }
     }
     
     override func viewDidLoad() {

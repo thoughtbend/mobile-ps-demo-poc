@@ -33,15 +33,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = serviceConfiguration
         
         let userPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: Constants.ClientIdAuth, clientSecret: Constants.ClientSecretAuth, poolId: Constants.PoolId)
+ 
+        AWSCognitoIdentityUserPool.registerCognitoIdentityUserPoolWithConfiguration(serviceConfiguration, userPoolConfiguration: userPoolConfiguration, forKey: Constants.UserPoolName)
         
-        let poolKey = Constants.UserPoolName
-        
-        AWSCognitoIdentityUserPool.registerCognitoIdentityUserPoolWithConfiguration(serviceConfiguration, userPoolConfiguration: userPoolConfiguration, forKey: poolKey)
-        
-        let pool = AWSCognitoIdentityUserPool(forKey: poolKey)
+        let pool = UserSessionManager.getUserPool()
         pool.delegate = self
         
         let analytics = AWSMobileAnalytics(forAppId: Constants.AnalyticsAppId, identityPoolId: Constants.CognitoIdentityPoolId)
+        
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: Constants.CognitoIdentityPoolId)
+        let cognitoServiceConfig = AWSServiceConfiguration(region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+        AWSCognito.registerCognitoWithConfiguration(cognitoServiceConfig, forKey: Constants.UserPoolName)
+        
+        //credentialsProvider.clearCredentials()
         
         UserSessionManager.getInstance().load()
         

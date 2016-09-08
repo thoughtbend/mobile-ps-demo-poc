@@ -64,6 +64,30 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
             let userSessionManager = UserSessionManager.getInstance()
             userSessionManager.setLastKnownLogin(self.emailField.text!)
             userSessionManager.store()
+            let userPool = UserSessionManager.getUserPool()
+            print("\(userPool.identityProviderName)")
+            
+            /*let loginsTask = userPool.logins();
+            //loginsTask.waitUntilFinished()
+            print("\(loginsTask.result)")*/
+            let credentialsProvider = UserSessionManager.getCredentialsProvider()
+            let loginsTask = credentialsProvider.identityProvider.logins();
+            loginsTask.continueWithSuccessBlock {
+                (task: AWSTask) -> AnyObject? in
+                print("\(task)")
+                return nil
+            }
+            
+            let getIdentityIdTask = credentialsProvider.getIdentityId()
+            getIdentityIdTask.continueWithSuccessBlock {
+                (task: AWSTask) -> AnyObject? in
+                
+                let result = credentialsProvider.identityId
+                print("IdentityId is \(result)")
+                
+                return nil
+            }
+            
         }
     
         dispatch_async(dispatch_get_main_queue()) {
@@ -74,6 +98,7 @@ class LoginController: UIViewController, AWSCognitoIdentityPasswordAuthenticatio
                 
                 self.loginSuccess = true
                 self.dismissViewControllerAnimated(true, completion: {
+                    
                     
                     /*let mainTabNavView = self.storyboard?.instantiateViewControllerWithIdentifier("mainTabNav")
                     self.showViewController(mainTabNavView!, sender: self)*/
